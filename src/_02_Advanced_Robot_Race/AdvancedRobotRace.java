@@ -1,5 +1,6 @@
 package _02_Advanced_Robot_Race;
 
+import java.awt.Color;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
@@ -13,10 +14,12 @@ public class AdvancedRobotRace {
 	static int boundary;
 	
 	public AdvancedRobotRace() {
-		num = 5;
+		num = 2;
 		winner = -1;
-		boundary = 500;
+		boundary = 0;
 	}
+	
+	// Less Y and X is UP and LEFT, respectively
 	
 	// Re-do the robot race recipe from level 3 module 0.
 	// This time, use threads to make all of the robots go at the same time.
@@ -53,13 +56,12 @@ public class AdvancedRobotRace {
 	public void sync(Robot r, int i) {
 		int w = r.getWindow().getWidth();
 		w = 1300; // Resizing to appropriate size
+		r.penUp();
 		r.moveTo((i+1)*(w/(num+1)), 500);
 		
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-
-		}
+		r.penDown();
+		r.setPenColor(new Color(i*255, 0, 0));
+		r.hide();
 		
 		while (winner == -1) {
 			r.setY(r.getY()-new Random().nextInt(3));
