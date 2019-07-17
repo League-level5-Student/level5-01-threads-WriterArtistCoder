@@ -14,7 +14,7 @@ public class AdvancedRobotRace {
 	static int boundary;
 	
 	public AdvancedRobotRace() {
-		num = 2;
+		num = 5;
 		winner = -1;
 		boundary = 0;
 	}
@@ -27,7 +27,7 @@ public class AdvancedRobotRace {
 	public static void main(String args[]) {
 //		HI FUTURE ME,
 //		GETTING THE ROBOTS
-//		TO LINE UP WAS 40% OF THE
+//		TO LINE UP WAS 30% OF THE
 //		BATTLE
 		
 		AdvancedRobotRace race = new AdvancedRobotRace();
@@ -59,16 +59,20 @@ public class AdvancedRobotRace {
 		r.penUp();
 		r.moveTo((i+1)*(w/(num+1)), 500);
 		
-		r.penDown();
-		r.setPenColor(new Color(i*255, 0, 0));
-		r.hide();
-		
-		while (winner == -1) {
-			r.setY(r.getY()-new Random().nextInt(3));
-			if (r.getY() >= boundary) {
-				winner = i;
+		r.penDown();;
+		/*
+		 * 
+		r.setRa
+		while (winner
+		()-new.getY Random().nndary();
+		r.hide();\/\/\/) {
+				winne == -1) {
+			r.setY(rr = i;ndomPenextInt(3));
+			if (r.getY() >= bouColor
 				JOptionPane.showMessageDialog(null, "Robot "+i+" has won!");
 			}
+			
+			*/
 		}
 	}
 }
