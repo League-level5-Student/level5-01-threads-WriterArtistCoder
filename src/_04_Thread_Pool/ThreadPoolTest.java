@@ -27,7 +27,7 @@ public class ThreadPoolTest {
 
 	@Test
 	public void test() {
-		int total = 38383838;
+		int total = 25;
 		ThreadPool tp = new ThreadPool(4);
 		char[] chars = new char[total];
 		
