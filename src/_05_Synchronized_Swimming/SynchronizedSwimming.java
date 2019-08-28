@@ -27,8 +27,8 @@ public class SynchronizedSwimming {
 	 * Refactor this method using a synchronized block to ensure a lock must be held on
 	 * the swimmingPool object until the swimmer has finished their lap.
 	 */
-	private static void swimLap(Swimmer swimmer) throws InterruptedException {
-		System.out.println(swimmer.name + " started a lap!");
+	private static synchronized void swimLap(Swimmer swimmer) throws InterruptedException {
+		System.out.println(swimmer.name + " started Lap #" + (swimmer.lapsFinished+1) + "!");
 		Thread.sleep(2000);
 		System.out.println(swimmer.name + " finished!");
 	}
