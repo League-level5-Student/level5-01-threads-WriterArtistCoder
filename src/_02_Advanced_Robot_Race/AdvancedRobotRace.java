@@ -2,9 +2,11 @@ package _02_Advanced_Robot_Race;
 
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 import org.jointheleague.graphical.robot.Robot;
 
-public class AdvancedRobotRace implements Runnable {
+public class AdvancedRobotRace {
 	static int rokuRoboot = 0;
 	
 	static final int robotNum = 5;
@@ -12,14 +14,19 @@ public class AdvancedRobotRace implements Runnable {
 	static final int windowWidth = 1300;
 	static final int windowHeight = 1000;
 
-	static final int finishLine = 800;
+	static final int finishLine = 200;
 
 	static boolean reachedTop;
+	
+	Robot[] race = new Robot[5];
 
 	public AdvancedRobotRace() {
 		reachedTop = false;
 	}
 
+	// TODO AUGHHH! MY ROBOTS ARE CREATING FOUR MEANINGLESS EMPTY WINDOWS!
+	// AND WHEN YOU CLOSE ONE ALL THE OTHERS CLOSE! AAAA! (_/ O▯O)_/ = _|_|_
+	
 	// Less Y and X is UP and LEFT, respectively
 
 	// Re-do the robot race recipe from level 3 module 0.
@@ -27,8 +34,10 @@ public class AdvancedRobotRace implements Runnable {
 
 	public static void main(String[] args) {
 		Thread[] threads = new Thread[robotNum];
+		AdvancedRobotRace robotRace = new AdvancedRobotRace();
+		
 		for (int i = 0; i < threads.length; i++) {
-			threads[i] = new Thread();
+			threads[i] = new Thread(()->robotRace.run());
 			threads[i].start();
 		}
 	}
@@ -37,17 +46,22 @@ public class AdvancedRobotRace implements Runnable {
 		int i = rokuRoboot;
 		rokuRoboot++;
 		
-		Robot r = new Robot();
-		r.getWindow().getParent().getParent().getParent().getParent().setSize(windowWidth, windowHeight);
-		// HEY ROWAN, NOW YOU HAVE TO MAKE YOUR ROKU-ROBOOT MOVE TO ITS
-		// STARTING POSITION! #GROOVYROBOOT
-		// r.moveTo(??, ??);
+		race[i] = new Robot();
+		race[i].show();
+		
+		race[i].moveTo(i*(windowWidth/robotNum), 1000);
 		
 		while (!reachedTop) {
-			r.move(new Random().nextInt(20));
-			if (r.getY() > finishLine) {
+			race[i].move(new Random().nextInt(100));
+			if (race[i].getY() > finishLine) {
 				reachedTop = true;
-
+				JOptionPane.showMessageDialog(null, "RokuRoboot #"+i+" has won!");
+			}
+			
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 		}
 	}
