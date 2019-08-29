@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import org.jointheleague.graphical.robot.Robot;
 
 public class AdvancedRobotRace {
+	
 	static int rokuRoboot = 0;
 	
 	static final int robotNum = 5;
@@ -14,7 +15,7 @@ public class AdvancedRobotRace {
 	static final int windowWidth = 1300;
 	static final int windowHeight = 1000;
 
-	static final int finishLine = 200;
+	static final int finishLine = 900;
 
 	static boolean reachedTop;
 	
@@ -25,7 +26,8 @@ public class AdvancedRobotRace {
 	}
 
 	// TODO AUGHHH! MY ROBOTS ARE CREATING FOUR MEANINGLESS EMPTY WINDOWS!
-	// AND WHEN YOU CLOSE ONE ALL THE OTHERS CLOSE! AAAA! (_/ O▯O)_/ = _|_|_
+	// AND WHEN YOU CLOSE ONE ALL THE OTHERS CLOSE! AAAA! (_/ >o<)_/ = _|_|_
+	// AND ALSO!! IT SHOWS FIVE NOTIFICATIONS FOR WHICH ROBOT WON!!
 	
 	// Less Y and X is UP and LEFT, respectively
 
@@ -38,6 +40,9 @@ public class AdvancedRobotRace {
 		
 		for (int i = 0; i < threads.length; i++) {
 			threads[i] = new Thread(()->robotRace.run());
+		}
+		
+		for (int i = 0; i < threads.length; i++) {
 			threads[i].start();
 		}
 	}
@@ -52,8 +57,8 @@ public class AdvancedRobotRace {
 		race[i].moveTo(i*(windowWidth/robotNum), 1000);
 		
 		while (!reachedTop) {
-			race[i].move(new Random().nextInt(100));
-			if (race[i].getY() > finishLine) {
+			race[i].move(new Random().nextInt(200));
+			if (race[i].getY() < finishLine) {
 				reachedTop = true;
 				JOptionPane.showMessageDialog(null, "RokuRoboot #"+i+" has won!");
 			}
@@ -65,4 +70,5 @@ public class AdvancedRobotRace {
 			}
 		}
 	}
+	
 }

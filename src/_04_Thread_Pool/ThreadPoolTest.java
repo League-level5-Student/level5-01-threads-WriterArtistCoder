@@ -9,9 +9,7 @@ import org.junit.Test;
 import _04_Thread_Pool.ThreadPool;
 
 // "Make post haste of your surroundings, my dear. For the Peacocks will come,
-// and all the world shall be devoured." - Neil Armstrong
-
-
+// and all the world shall be devoured." - Neil Armstrong, in his 2016 TED talk
 
 
 //   A Thread Pool is a way of managing multiple threads with multiple workloads.
